@@ -2,21 +2,21 @@ use gtk::prelude::*;
 use gio::prelude::*;
 
 fn main() {
-	let application = gtk::Application::new(None, Default::default()).unwrap();
+	let application = gtk::Application::new(Some("org.gtk.example"), Default::default()).unwrap();
 
 
 	application.connect_activate(move |app| {
 		let window = gtk::ApplicationWindow::new(app);
-		window.set_title("testcase");
-				
-		window.connect_button_press_event(move |window, ev| {
-			println!("{:?}", ev.get_event_type());
-			gtk::Inhibit(false)
+		window.set_title("Window");
+		window.set_default_size(200, 200);
+		
+		let gesture_drag = gtk::GestureDrag::new(&window);
+		gesture_drag.set_touch_only(false);
+ 		gesture_drag.set_propagation_phase(gtk::PropagationPhase::Target);
+		gesture_drag.connect_drag_begin(move |g_d, x, y| {
+			println!("Hi");
 		});
-		window.connect_button_release_event(move |window, ev| {
-			println!("{:?}", ev.get_event_type());
-			gtk::Inhibit(false)
-		});
+		
 		window.show_all();
 	});
 
