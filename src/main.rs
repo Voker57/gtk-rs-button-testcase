@@ -14,7 +14,7 @@ fn main() {
 		gesture_drag.set_touch_only(false);
  		gesture_drag.set_propagation_phase(gtk::PropagationPhase::Target);
 		gesture_drag.connect_drag_begin(move |g_d, x, y| {
-			println!("Hi");
+			println!("hi {} {}", x, y);
 		});
 		
 		window.show_all();
