@@ -13,6 +13,10 @@ fn main() {
 			println!("{:?}", ev.get_event_type());
 			gtk::Inhibit(false)
 		});
+		window.connect_button_release_event(move |window, ev| {
+			println!("{:?}", ev.get_event_type());
+			gtk::Inhibit(false)
+		});
 		window.show_all();
 	});
 

@@ -3,7 +3,7 @@
 gboolean on_button_press(GtkWidget* widget,
   GdkEventButton *event, GdkWindowEdge edge) {
       
-  printf("%d\n", event->type == GDK_BUTTON_PRESS);
+  printf("%d\n", event->type);
   
   return TRUE;
 }
@@ -18,6 +18,7 @@ activate (GtkApplication* app,
   gtk_window_set_title (GTK_WINDOW (window), "Window");
   gtk_window_set_default_size (GTK_WINDOW (window), 200, 200);
   g_signal_connect(G_OBJECT(window), "button-press-event", G_CALLBACK(on_button_press), NULL);
+  g_signal_connect(G_OBJECT(window), "button-release-event", G_CALLBACK(on_button_press), NULL);
   gtk_widget_show_all (window);
 }
 
